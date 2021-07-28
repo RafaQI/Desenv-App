@@ -6,6 +6,8 @@ class Calculadora extends StatefulWidget {
 }
 
 class CalculadoraState extends State<Calculadora> {
+  get limpar => null;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -30,14 +32,14 @@ class CalculadoraState extends State<Calculadora> {
             new TextField(
               keyboardType: TextInputType.number,
               decoration: new InputDecoration(hintText: "Informe o valor 1"),
-              controller: t1,
+              controller: campoValor1,
             ),
 
             //Campo de Texto (input do valor 2)
             new TextField(
               keyboardType: TextInputType.number,
               decoration: new InputDecoration(hintText: "Informe o Valor 2"),
-              controller: t2,
+              controller: campoValor2,
             ),
 
             //Espaçamento depois dos inputs
@@ -124,89 +126,43 @@ class CalculadoraState extends State<Calculadora> {
   } //fecha o método build
 
   // Atributos
-  var num1;
-  var num2;
-  var resultado = 0;
+  num num1 = 0;
+  num num2 = 0;
+  num resultado = 0;
 
-  TextEditingController t1 = new TextEditingController(text: "0");
-  TextEditingController t2 = new TextEditingController(text: "0");
+  TextEditingController campoValor1 = new TextEditingController(text: "0");
+  TextEditingController campoValor2 = new TextEditingController(text: "0");
 
   // Métodos
   void somar() {
     setState(() {
-      num1 = int.parse(t1.text);
-      num2 = int.parse(t2.text);
+      num1 = num.parse(campoValor1.text);
+      num2 = num.parse(campoValor2.text);
       resultado = num1 + num2;
     });
   }
 
-  // Atributos
-  var num3;
-  var num4;
-  var result = 0;
-
-  TextEditingController t3 = new TextEditingController(text: "");
-  TextEditingController t4 = new TextEditingController(text: "");
-
-  // Métodos
   void subtrair() {
     setState(() {
-      num3 = int.parse(t3.text);
-      num4 = int.parse(t4.text);
-      result = num1 - num2;
+      num1 = num.parse(campoValor1.text);
+      num2 = num.parse(campoValor2.text);
+      resultado = num1 - num2;
     });
   }
 
-  void limpar() {
+  void dividir() {
     setState(() {
-      t3.text = "";
-      t4.text = "";
-      resultado = 0;
+      num1 = num.parse(campoValor1.text);
+      num2 = num.parse(campoValor2.text);
+      resultado = num1 / num2;
     });
   }
-} // fecha classe CalculadoraState
 
-// Atributos
-var num1;
-var num2;
-var result = 0;
-
-TextEditingController t1 = new TextEditingController(text: "");
-TextEditingController t2 = new TextEditingController(text: "");
-
-// Métodos
-void dividir() {
-  setState(() {
-    num1 = int.parse(t1.text);
-    num2 = int.parse(t2.text);
-    result = num1 / num2;
-  });
-}
-
-void limpar() {
-  setState(() {
-    t1.text = "";
-    t2.text = "";
-    result = 0;
-  });
-}
-
-void setState(Null Function() param0) {}
-// fecha classe CalculadoraState
-
-// Atributos
-var num5;
-var num6;
-var resultado = 0;
-
-TextEditingController t5 = new TextEditingController(text: "");
-TextEditingController t6 = new TextEditingController(text: "");
-
-// Métodos
-void multiplicar() {
-  setState(() {
-    num5 = int.parse(t5.text);
-    num6 = int.parse(t6.text);
-    resultado = num1 * num2;
-  });
+  void multiplicar() {
+    setState(() {
+      num1 = num.parse(campoValor1.text);
+      num2 = num.parse(campoValor2.text);
+      resultado = num1 * num2;
+    });
+  }
 }
